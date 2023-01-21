@@ -7,7 +7,7 @@ import css from '../Modal/Modal.module.css'
 export class Modal extends Component {
 
     handleKeyDown = (event) => {
-        if (event.key === 'Escape') {
+        if (event.code === 'Escape' || event.currentTarget === event.target) {
             return this.props.onClose();
         }
     }
@@ -21,11 +21,11 @@ export class Modal extends Component {
     }
 
     render() {
-        const { largeImageURL } = this.props;
+        const { largeImage } = this.props;
         return (
         <div className={css.overlayModal} onClick={this.handleKeyDown}>
             <div className = {css.modal}>
-                    <img src={largeImageURL} className={css.largeImage} alt="" />
+                    <img src={largeImage} className={css.largeImage} alt="" />
             </div>
         </div>
         )
@@ -34,6 +34,6 @@ export class Modal extends Component {
 
 Modal.propTypes = {
     onClose: PropTypes.func,
-    largeImageURL: PropTypes.string.isRequired,
+    largeImage: PropTypes.string.isRequired,
 }
 

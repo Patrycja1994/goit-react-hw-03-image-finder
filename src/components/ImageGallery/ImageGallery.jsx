@@ -12,12 +12,13 @@ export class ImageGallery extends Component {
 
         return (
             <ul className={css.imageGallery}>
-                { images.map(({ id, webformatURL, largeImageURL,}) => (
+                { images.map (image => (
                     <ImageGalleryItem
-                    key={id}
-                    webformatURL={webformatURL}
-                    largeImageURL={largeImageURL}
+                    key={image.id}
+                    webformatURL={image.webformatURL}
+                    largeImageURL={image.largeImageURL}
                     onOpen={onOpen}
+                    tags={image.tags}
                     />
                 ))}
             </ul>

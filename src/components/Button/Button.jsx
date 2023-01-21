@@ -9,7 +9,7 @@ export class Button extends Component {
             <button
             type="button"
             className={css.button}
-            onClick={this.props.nextPage}
+            onClick={this.props.onClick}
             >
                 Load more
             </button>
@@ -18,5 +18,5 @@ export class Button extends Component {
 };
 
 Button.propTypes = {
- nextPage: PropTypes.func.isRequired,
+ onClick: PropTypes.func.isRequired,
 };
