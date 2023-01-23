@@ -5,21 +5,17 @@ import css from '../Searchbar/Searchbar.module.css'
 
 export class Searchbar extends Component {
 
-    state = {
-        query: "",
-    };
-
     handleChange = (event) => {
         this.setState({ query: event.target.value.toLowerCase() })
     };
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        if (this.state.query.trim() === "") {
+        if (event.target.search.value.trim() === "") {
             return alert(" Enter query! ");
         }
 
-        this.props.onSubmit(this.state.query);
+        this.props.onSubmit(event.target.search.value);
     };
 
 

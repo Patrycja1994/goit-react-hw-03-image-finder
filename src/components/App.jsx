@@ -30,15 +30,20 @@ export class App extends Component {
   };
 
   fetchQuery = async (value) => {
-    this.setState({ isLoading: true })
+    this.setState({ isLoading: true, error: null })
     try {
       const response = await fetchImages(value, this.state.page);
+      const dataArray = [];
+      response.map(({ id, webformatURL, largeImageURL }) =>dataArray.push({ id, webformatURL, largeImageURL })
+      )
+      if (dataArray.length === 0) {
+        return alert(" Not found any picture! ");
+      };
       this.setState((prevState) => ({
        images: [...prevState.images, ...response],
       }))
   }   catch(error){
       this.setState ({ error });
-      throw new Error (error)
     } finally {
       this.setState ({ isLoading: false })
     }
@@ -67,7 +72,7 @@ export class App extends Component {
         <Searchbar onSubmit={this.onSubmit}/>
         <ImageGallery images={images} onOpen={this.onOpen}/>
         { isLoading && <Loader /> }
-        { images.length > 0 && ( 
+        { images.length > 1 && ( 
         <Button onClick={this.loadMore}/> 
         )} 
         { showModal && (
